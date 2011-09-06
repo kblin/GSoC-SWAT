@@ -1,3 +1,0 @@
-include swat/config/deployment.ini_tmpl
-recursive-include swat/public *
-recursive-include swat/templates *
