@@ -533,7 +533,7 @@ Ext.ux.swat.MainWindowApp = Ext.extend(Ext.Window,{
         } else if (Ext.getCmp('MainWindowApp').CurrentStoreStr=='GroupStore'){
             GroupController.SendData('Group/UpdateGroup',changes);
         } else if(Ext.getCmp('MainWindowApp').CurrentStoreStr=='ShareStore'){
-            GroupController.SendData('Share/UpdateShare',changes);
+            ShareController.SendData('Share/UpdateShare',changes);
         }
     }
 });
