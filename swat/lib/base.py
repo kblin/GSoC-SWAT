@@ -5,7 +5,7 @@ Provides the BaseController class for subclassing.
 import json
 import jsonpickle
 
-from pylons import c, cache, config, g, request, response, session
+from pylons import tmpl_context as c, cache, config, app_globals as g, request, response, session
 from pylons.controllers import WSGIController
 from pylons.templating import render_mako as render
 
@@ -18,7 +18,7 @@ class BaseController(WSGIController):
 	def __init__(self):
 		response.headers['Content-type'] = 'text/javascript; charset=utf-8'
 		#response.write(self.__class__);
-		
+
 	def __call__(self, environ, start_response):
 		"""Invoke the Controller"""
 		# WSGIController.__call__ dispatches to the Controller method

@@ -124,7 +124,7 @@ class UserModel(BaseModel):
 
 	def SetPassword(self,username,password):
 		try:
-			self.net.set_password(username,self.domain_name_list[0],password,self.creds)
+			self.net.set_password(username,self.domain_name_list[0],password)
 			#net.set_password(username,'SAMDOM',password,self.creds)
 		except Exception,e:
 			self.SetError(e.message,0)
@@ -314,4 +314,3 @@ class Printer:
 			if  '_' not in str(name).join(str(value)):
 				response.write('  .%s: %r' % (name, value))
 
-  

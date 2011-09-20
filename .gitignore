@@ -1,3 +1,4 @@
+*.swp
 *.kpf
 *.pyc
 *.mako.py

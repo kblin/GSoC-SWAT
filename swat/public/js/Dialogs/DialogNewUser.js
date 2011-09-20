@@ -160,15 +160,15 @@ DialogNewUser = {
 							var strength = Ext.getCmp('idpass2').getStrength();
 
 							if (pass1 != pass2){
-								Ext.Msg.alert('Error','Las Contrase&ntilde;as no son iguales');
+								Ext.Msg.alert('Error','The passwords don\'t match');
 								return;
 							}
 
 							if (strength <= 60){
-								Ext.Msg.alert('Error','La Contrase&ntilde;a es demasiado d&eacute;bil');
-								return;								
+								Ext.Msg.alert('Error','The password is too weak');
+								return;
 							}
-							
+
 							params={	
 								account:Ext.getCmp('idUsername').getValue()
 								,password:pass1
