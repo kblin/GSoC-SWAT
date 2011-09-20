@@ -2,7 +2,7 @@ Ext.ns("ShareController");
 
 ShareController = {
 
-            NewShare:function(){
+            AddShare:function(){
                 DialogNewShare.show();
             }
 
