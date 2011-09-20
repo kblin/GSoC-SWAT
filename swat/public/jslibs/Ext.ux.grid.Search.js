@@ -11,7 +11,7 @@
  * the Open Source LGPL 3.0 license.  Commercial use is permitted to the extent
  * that the code/component(s) do NOT become part of another Open Source or Commercially
  * licensed development library or toolkit without explicit permission.
- * 
+ *
  * License details: http://www.gnu.org/licenses/lgpl.html
  */
 
@@ -42,7 +42,7 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 
 	/**
 	 * @cfg {String} searchTipText Text to display as input tooltip. Set to '' for no tooltip
-	 */ 
+	 */
 	,searchTipText:'Type a text to search and press Enter'
 
 	/**
@@ -74,7 +74,7 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 	,disableIndexes:[]
 
 	/**
-	 * @cfg {String} dateFormat how to format date values. If undefined (the default) 
+	 * @cfg {String} dateFormat how to format date values. If undefined (the default)
 	 * date is formatted as configured in colummn model
 	 */
 	,dateFormat:undefined
@@ -151,7 +151,7 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 	 * @cfg {Ext.Panel/String} toolbarContainer Panel (or id of the panel) which contains toolbar we want to render
 	 * search controls to (defaults to this.grid, the grid this plugin is plugged-in into)
 	 */
-	
+
 	// {{{
 	/**
 	 * private
@@ -328,7 +328,7 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 					fields.push(item.dataIndex);
 				}
 			});
-			
+
 			fields = fields.toString();
 			// add fields and query to baseParams of store
 			delete(store.baseParams[this.paramNames.fields]);
@@ -342,8 +342,8 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 				store.baseParams[this.paramNames.fields] = fields;
 				store.baseParams[this.paramNames.query] = val;
 			}
-			
-			
+
+
 
 			// reload store
 			store.reload();
@@ -409,7 +409,7 @@ Ext.extend(Ext.ux.grid.Search, Ext.util.Observable, {
 		var cm = this.grid.colModel;
 		var group = undefined;
 		if('radio' === this.menuStyle) {
-			group = 'g' + (new Date).getTime();	
+			group = 'g' + (new Date).getTime();
 		}
 		Ext.each(cm.config, function(config) {
 			var disable = false;

@@ -2,12 +2,12 @@ Ext.ns('login');
 Config = {}
 login.index = {
 	init: function(){
-	
-	
-	
-	
+
+
+
+
 		Ext.QuickTips.init();
-		
+
 		   var FormResetPass = new Ext.FormPanel({
 				labelWidth: 75
 				,labelAlign: 'left'
@@ -46,28 +46,28 @@ login.index = {
 													xtype:'checkbox'
 													,fieldLabel: ''
 													,boxLabel: 'El usuario debe de cambiar la contrase&ntilde;a en el siguiente inicio de sessi&oacute;n'
-													,name: 'ForcePasswordChange'									
+													,name: 'ForcePasswordChange'
 													//,height: 30
 												},{
 													xtype: 'box'
 													,id:'AccountStatusLabel'
-													
+
 													,autoEl: {
 														//tag: 'blockquote'
 														html: '<span style="font-size: small">&nbsp;&nbsp;&nbsp;El usuario ha de cerrar la sessi&oacute;n y volver a abrirla para que los cambios<br>&nbsp;&nbsp; tengan efecto.<br><br></span>'
-													}												
+													}
 												},{
 													xtype: 'box'
 													,autoEl: {
 														tag: 'blockquote'
 														,html: '<span style="font-size: small">Estado del bloqueo de cuenta en este controlador de dominio:</span>'
-													}												
+													}
 												},{
 													xtype:'checkbox'
 													,fieldLabel: ''
 													,boxLabel: 'Desbloquear la cuenta de usuario'
-													,name: 'UnlockUserAccount'									
-												}]									
+													,name: 'UnlockUserAccount'
+												}]
 									}]
 					}]
                     ,buttons: [{
@@ -86,21 +86,21 @@ login.index = {
 
 							if (strength <= 60){
 								Ext.Msg.alert('Error','La Contrase&ntilde;a es demasiado d&eacute;bil');
-								return;								
+								return;
 							}
-							
+
 							params={
 								dn:dn
 								,account:account
 								,password:pass1
-							}	
+							}
 							//SendForm(FormResetPass,WindowResetPass,'User/SetPassword',params,true,false)
-						
+
                         }
                     }]
 			});
 
-			
+
 
 			var WindowResetPass = new Ext.Window({
                     title: 'Restablecer contrase&ntilde;a'
@@ -114,10 +114,10 @@ login.index = {
 
 
 			//top.render(WindowResetPass);
-			
-			WindowResetPass.show();			
-			WindowResetPass.center();		
-		
+
+			WindowResetPass.show();
+			WindowResetPass.center();
+
 		var UserTextField = new Ext.form.TextField({
 			fieldLabel:'Username',
 			type:'textfield',
@@ -127,7 +127,7 @@ login.index = {
 			triggerAction: 'all',
 			displayField:'name'
 		});
-		
+
 		var passw = new Ext.form.TextField({
 			fieldLabel: 'Password',
 			name: 'passw',
@@ -141,56 +141,56 @@ login.index = {
 				var charCode = e.getCharCode();
 				Ext.Msg.alert(charCode);
 			}
-*/			
-                     listeners:   
-                     {  
-                         keypress: function(t,e)  
-                         {  
-                             if(e.getKey() == 13)  
-                             {  
-                                // Ext.get('server').focus(); 
-                                //Ext.Msg.alert(e.getKey()); 
+*/
+                     listeners:
+                     {
+                         keypress: function(t,e)
+                         {
+                             if(e.getKey() == 13)
+                             {
+                                // Ext.get('server').focus();
+                                //Ext.Msg.alert(e.getKey());
                                 Enviar();
-                             }  
-                         }  
-                     } 
+                             }
+                         }
+                     }
 
 
 		});
-		
- 
-		
-		
+
+
+
+
 		var win=new Ext.Window({
 			title: 'Login into the Samba Web Administration Tool',
 			bodyStyle:'padding: 10px',		//alejamos los componentes de los bordes
 			//width:320,
 			//height:160,
 			layout:'form',
-			items: [UserTextField,passw],			
+			items: [UserTextField,passw],
 	    	 buttons: [{
 				text: 'Login',
 				handler:Enviar
-			}] 
+			}]
 		});
 		//Ext.MessageBox.wait('Cargando  Aplicación ...');
-		
+
 		win.show();
 
 		function Enviar(){
 				Ext.Ajax.request({
 									url:"Login",
 									params:{user:UserTextField.getValue(),password:passw.getValue()},
-									/*callback:function(a,b,c){	
+									/*callback:function(a,b,c){
 											if (c.responseText != 'OK'){
-											Ext.Msg.alert('Login Failed',c.responseText);							
+											Ext.Msg.alert('Login Failed',c.responseText);
 		//									alert(c.responseText);
 											}else{
 											var myMask = new Ext.LoadMask(Ext.getBody(), {msg:"Cargando   ..."});
 											myMask.show();
 											document.location.href="index.php";
 											}
-									
+
 								}*/
 								   success: function(response, opts) {
 									  var obj = Ext.decode(response.responseText);
@@ -200,7 +200,7 @@ login.index = {
 											Config.DnsDomain =   obj.DnsDomain;
 											Config.RootDSE =   obj.RootDSE;
 											win.close();
-											
+
 											//Plugins
 											loadjscssfile("./jslibs/RowEditor.js");
 											loadjscssfile("./jslibs/CheckColumn.js");
@@ -211,42 +211,42 @@ login.index = {
 											loadjscssfile("./jslibs/wizard/CardLayout.js");
 											loadjscssfile("./jslibs/wizard/Wizard.js");
 											loadjscssfile("./jslibs/wizard/Header.js");
-											loadjscssfile("./jslibs/wizard/Card.js");		
-											
+											loadjscssfile("./jslibs/wizard/Card.js");
+
 											//Samba Flags
 											loadjscssfile('js/flags.js');
-											
+
 											//Dialogs
-											loadjscssfile("./js/Dialogs/SendDialog.js"); 											
-											loadjscssfile("./js/Dialogs/DialogResetPass.js"); 											
-											
+											loadjscssfile("./js/Dialogs/SendDialog.js"); 
+											loadjscssfile("./js/Dialogs/DialogResetPass.js"); 
+
 											//Menus
 											//loadjscssfile('js/ContexMenu.js');
 											loadjscssfile('js/ContexMenu.js');
-											
+
 											//Controllers
 											loadjscssfile('js/UserController.js');
-											
-											
+
+
 											//Base App
 											loadjscssfile('js/application.js');
-											
+
 									  } else {
-											Ext.Msg.alert('Login Failed!', obj.msg); 
-											 
+											Ext.Msg.alert('Login Failed!', obj.msg);
+
 									  }
-									  
+
 								   },
 								   failure: function(response, opts) {
 									  //console.log('server-side failure with status code ' + response.status);
-								   }								
-								
-								
+								   }
+
+
 				});
-		
+
 		};
-		
-	}	
+
+	}
 }
 
 Ext.onReady(login.index.init);

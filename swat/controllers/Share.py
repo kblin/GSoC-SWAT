@@ -10,102 +10,102 @@ log = logging.getLogger(__name__)
 
 class ShareController(BaseController):
 
-	def __init__(self):
-		BaseController.__init__(self)
-		if self._check_session():
-			self.model = ShareModel(session['username'],session['password']);
-			self.ChildNodes = [];
+    def __init__(self):
+        BaseController.__init__(self)
+        if self._check_session():
+            self.model = ShareModel(session['username'],session['password']);
+            self.ChildNodes = [];
 
-	def index(self):
-		if not self._check_session():
-			return json.dumps(self.AuthErr);
-			
-		Shares = self.model.GetShareList();
-		for Share in Shares:
-			#response.write(Share.Sharename+"<br>");
-			Share.type='share';
-			Share.icon='HD-icon';
-			
-			#self.ChildNodes.append({
-			#	'name':Share.name
-			#	,'path':Share.path
-			#	,'comment':Share.comment
-			#	,'icon':'HD-icon'
-			#	,'type':'share'
-			#});
+    def index(self):
+        if not self._check_session():
+            return json.dumps(self.AuthErr);
 
-		return jsonpickle.encode({"Nodos":Shares},unpicklable=False);
+        Shares = self.model.GetShareList();
+        for Share in Shares:
+            #response.write(Share.Sharename+"<br>");
+            Share.type='share';
+            Share.icon='HD-icon';
 
-	def UpdateShare(self):
-		if not self._check_session():
-			return json.dumps(self.AuthErr);
-		try:
-			
-			name = request.params.get("name","");
-			comment = request.params.get("comment","");
-			#FIXME check path
-			path = request.params.get("path","");
-			share = self.model.GetShare(name);
-			
-			if(share==False):
-				raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
-			share.name=name;
-			share.comment=comment;
-			share.path=path;
-			
-			if(self.model.UpdateShare(share)==False):
-				raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+            #self.ChildNodes.append({
+            #    'name':Share.name
+            #    ,'path':Share.path
+            #    ,'comment':Share.comment
+            #    ,'icon':'HD-icon'
+            #    ,'type':'share'
+            #});
 
-		except Exception,e:
-			if(len(e.args)>1):
-				return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
-			else:
-				return json.dumps({'success': False, 'msg': e.args,'num':-1})
-				
-		return json.dumps(self.successOK);
+        return jsonpickle.encode({"Nodos":Shares},unpicklable=False);
 
-	def DeleteShare(self):
-		try:
-			if not self._check_session():
-				return json.dumps(self.AuthErr);
-			
-			name = request.params.get("name","")
-			if(not self.model.DeleteShare(name)):
-				raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)			
-			
-		except Exception,e:
-			if(len(e.args)>1):
-				return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
-			else:
-				return json.dumps({'success': False, 'msg': e.args,'num':-1})
-		return json.dumps(self.successOK)	
+    def UpdateShare(self):
+        if not self._check_session():
+            return json.dumps(self.AuthErr);
+        try:
+
+            name = request.params.get("name","");
+            comment = request.params.get("comment","");
+            #FIXME check path
+            path = request.params.get("path","");
+            share = self.model.GetShare(name);
+
+            if(share==False):
+                raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+            share.name=name;
+            share.comment=comment;
+            share.path=path;
+
+            if(self.model.UpdateShare(share)==False):
+                raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+
+        except Exception,e:
+            if(len(e.args)>1):
+                return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
+            else:
+                return json.dumps({'success': False, 'msg': e.args,'num':-1})
+
+        return json.dumps(self.successOK);
+
+    def DeleteShare(self):
+        try:
+            if not self._check_session():
+                return json.dumps(self.AuthErr);
+
+            name = request.params.get("name","")
+            if(not self.model.DeleteShare(name)):
+                raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+
+        except Exception,e:
+            if(len(e.args)>1):
+                return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
+            else:
+                return json.dumps({'success': False, 'msg': e.args,'num':-1})
+        return json.dumps(self.successOK)
 
 
-	def DeleteShareList(self):
-		try:
-			if not self._check_session():
-				return json.dumps(self.AuthErr);
-			
-			ShareList = request.params.get("ShareList","")
-			if(ShareList.count(',')>0):
-				ShareList = ShareList.split(',');
-				for name in ShareList:
-					if(not self.model.DeleteShare(name)):
-						raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)			
-			else:
-				if(not self.model.DeleteShare(ShareList)):
-					raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+    def DeleteShareList(self):
+        try:
+            if not self._check_session():
+                return json.dumps(self.AuthErr);
 
-		except Exception,e:
-			if(len(e.args)>1):
-				return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
-			else:
-				return json.dumps({'success': False, 'msg': e.args,'num':-1})
-		return json.dumps(self.successOK)	
+            ShareList = request.params.get("ShareList","")
+            if(ShareList.count(',')>0):
+                ShareList = ShareList.split(',');
+                for name in ShareList:
+                    if(not self.model.DeleteShare(name)):
+                        raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
+            else:
+                if(not self.model.DeleteShare(ShareList)):
+                    raise Exception(self.model.LastErrorNumber,self.model.LastErrorStr)
 
-	def test(self):
-		#return jsonpickle.encode(self.model.GetShareList());
-		if(self.model.AddShare("test")==False):
-			return json.dumps({'success': False, 'msg':self.model.LastErrorStr,'num':self.model.LastErrorNumber})
-			
-		return jsonpickle.encode(self.successOK);
+        except Exception,e:
+            if(len(e.args)>1):
+                return json.dumps({'success': False, 'msg': e.args[1],'num':e.args[0]})
+            else:
+                return json.dumps({'success': False, 'msg': e.args,'num':-1})
+        return json.dumps(self.successOK)
+
+    def test(self):
+        #return jsonpickle.encode(self.model.GetShareList());
+        if(self.model.AddShare("test")==False):
+            return json.dumps({'success': False, 'msg':self.model.LastErrorStr,'num':self.model.LastErrorNumber})
+
+        return jsonpickle.encode(self.successOK);

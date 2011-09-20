@@ -13,15 +13,15 @@ DialogNewGroup = {
 		   }
 
 		var oldmemberlist = '';
-		
+
 		ComboStore = new Ext.data.JsonStore({
 		url: 'Group/List',
 		root: 'Nodos',
-		fields: [  
+		fields: [
 						'name','rid','type'
 				]
 		});
-	
+
 		var Combo = new Ext.form.ComboBox({
 				xtype: "combo",
 				name: "comboGroups",
@@ -39,8 +39,8 @@ DialogNewGroup = {
 				fieldLabel: "<b>Groups</b>"
 				//,width: 250
 				,anchor: "100%"
-		});	
-			
+		});
+
 		   var FormNewGroup = new Ext.FormPanel({
 				labelWidth: 75
 				,labelAlign: 'left'
@@ -54,7 +54,7 @@ DialogNewGroup = {
 							layout: 'form'
 							,height: '85%'
 							,items: [
-								{			
+								{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,id: "idGroupName"
@@ -62,7 +62,7 @@ DialogNewGroup = {
 									,allowBlank: false
 									,fieldLabel: "<b>Name</b>"
 									,width: '95%'
-								},{			
+								},{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,id: "idDescription"
@@ -75,7 +75,7 @@ DialogNewGroup = {
 									xtype: 'box'
 									,autoEl: {
 										tag: 'hr'
-									}												
+									}
 								},Combo,{
 									xtype: 'box'
 									,autoEl: {
@@ -92,18 +92,18 @@ DialogNewGroup = {
 									}
 									,listeners: {
 										'render': function () {
-															
+
 												//console.dir(data.memberlist);
 												for (j in data.memberlist) {
 													if(typeof(data.memberlist[j])=='object'){
 														appendOptionLast('memberlist', data.memberlist[j].rid,data.memberlist[j].name,data.memberlist[j].type);
-														
-													}    
+
+													}
 												}
 												oldmemberlist=ExplodeListByComma('memberlist');
-												
+
 										}
-													
+
 									}
 									,width: '100%'
 									,height: '75%'
@@ -117,30 +117,30 @@ DialogNewGroup = {
 										xtype: 'tbbutton',
 										text: 'Add',
 										handler: function () {
-											
+
 											var idcomboGroups = Ext.getCmp('idcomboGroups');
 
 											if (!idcomboGroups) return false;
 
-											
+
 											var texto = '';
 											var valor = idcomboGroups.getValue();
-											 
-															
-															
-																						
+
+
+
+
 											if (valor.trim != '') {
 												var record = idcomboGroups.findRecord(idcomboGroups.valueField, valor);
 												if(record){
-													//console.dir(record)	;	
-													var texto = record.get(idcomboGroups.displayField);					        
+													//console.dir(record)	;
+													var texto = record.get(idcomboGroups.displayField);
 													if(texto.trim != ''){
 														appendOptionLast('memberlist', valor, texto,record.json.type);
 													}
 												}
 											}
-														
-												
+
+
 
 										}
 										,style: 'float:right;padding-right: 5px;padding-top:2px;'
@@ -150,9 +150,9 @@ DialogNewGroup = {
                         text: 'Create',
                         formBind: true,
                         handler:function(){
-							
-						
-                            memberlist=ExplodeListByComma('memberlist');															
+
+
+                            memberlist=ExplodeListByComma('memberlist');
 							params={
 									account:'a'
 									//name:Ext.getCmp("idGroupName").getValue()
@@ -160,7 +160,7 @@ DialogNewGroup = {
 									,memberlist:memberlist
 									//,iscopy:iscopy
 							}
-															
+
 							/*if(iscopy){
 								if(memberlist.trim()!=''){
 									memberlist = memberlist.split(",");
@@ -168,24 +168,24 @@ DialogNewGroup = {
 									memberlist = Array();
 								}
 								for (j in data.memberlist) {
-									
+
 									if(typeof(data.memberlist[j])=='object'){
-										memberlist.push(data.memberlist[j].rid);	
-									} 
+										memberlist.push(data.memberlist[j].rid);
+									}
 								}
 
 
 								params.memberlist=memberlist.toString();
 								params.oldmemberlist='';
-								
+
 								params.iscopy=true;
 							}*/
 
-							
-							
+
+
 							SendForm(FormNewGroup,WindowNewGroup,'Group/AddGroup',params)
-							
-						
+
+
                         }
                     }, {
 
@@ -215,27 +215,27 @@ DialogNewGroup = {
 
 
 			WindowNewGroup.on('render',function(w){
-				setTimeout("ComboStore.load();",200);			
+				setTimeout("ComboStore.load();",200);
 			});
-			
+
 			WindowNewGroup.on('beforeclose',function(w){
 				MainAppW.MemberOfStore.load();
 			});
-						
-			WindowNewGroup.show();			
+
+			WindowNewGroup.show();
 			WindowNewGroup.center();
-			
-			var myMask = new Ext.LoadMask(WindowNewGroup.getEl());		
-			
+
+			var myMask = new Ext.LoadMask(WindowNewGroup.getEl());
+
 			//top.render(WindowNewGroup);
 			ComboStore.on('load', function(Store,records,options){
 						myMask.hide();
 						//console.dir(records);
-			});			
-			
+			});
+
 			ComboStore.on('beforeload', function(Store,options){
 						myMask.show();
-			});	
-		
+			});
+
 		}
 }

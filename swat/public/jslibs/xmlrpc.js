@@ -8,15 +8,15 @@ Copyright 2001 Scott Andrew LePera
 scott@scottandrew.com
 http://www.scottandrew.com/xml-rpc
 
-License: 
-You are granted the right to use and/or redistribute this 
-code only if this license and the copyright notice are included 
-and you accept that no warranty of any kind is made or implied 
+License:
+You are granted the right to use and/or redistribute this
+code only if this license and the copyright notice are included
+and you accept that no warranty of any kind is made or implied
 by the author.
 
 --
 
-The JavaScript code distributed with Atomic (the "Software") is licensed 
+The JavaScript code distributed with Atomic (the "Software") is licensed
 under the GNU (GPL) open source license version 3.
 
 http://www.gnu.org/licenses/gpl.html
@@ -67,8 +67,8 @@ Ext.extend( Atomic.util.XMLRPC, Ext.util.Observable, {
 	{
 		var type = typeof( obj );
 		if( type == "number" ) {
-			if( Math.round( obj ) == obj ) { 
-				type = "int" 
+			if( Math.round( obj ) == obj ) {
+				type = "int"
 			} else {
 				type = "double";
 			}
@@ -92,7 +92,7 @@ Ext.extend( Atomic.util.XMLRPC, Ext.util.Observable, {
 		var time = this.leadingZero( new String( date.getHours() ) ) + ":" + this.leadingZero( new String( date.getMinutes() ) ) + ":" + this.leadingZero( new String( date.getSeconds() ) );
 		var converted = year+month+day+"T"+time;
 		return converted;
-	},	
+	},
 	leadingZero: function( n )
 	{
 		return (n.length==1?"0"+n:n);
@@ -105,15 +105,15 @@ Ext.extend( Atomic.util.XMLRPC, Ext.util.Observable, {
 			var param = this.templates.get( type );
 			if( type == "struct" ) {
 				param = new Ext.MasterTemplate( param );
-				for( var key in obj ) { 
+				for( var key in obj ) {
 					var valueXml = this.getParameterXml( obj[key] );
 					if( valueXml ) { param.add( "value", { name: key, value: valueXml } ); }
 				}
 			} else if( type == "array" ) {
 				param = new Ext.MasterTemplate( param );
-				Ext.each( obj, function( item )	{ 
+				Ext.each( obj, function( item )	{
 					var valueXml = this.getParameterXml( item );
-					param.add( "value", { value: valueXml } );	
+					param.add( "value", { value: valueXml } );
 				}, this );
 			} else if( type == "boolean" ) {
 				paramArgs = { value: ( obj ? "1" : "0" ) };
@@ -138,11 +138,11 @@ Ext.extend( Atomic.util.XMLRPC, Ext.util.Observable, {
 	},
 	call: function( options, params )
 	{
-		if( options ) {	
-			this.setOptions( options ); 
+		if( options ) {
+			this.setOptions( options );
 			Ext.each( options.params, function( item, index ) { this.addParameter( item ); }, this );
 		}
-		
+
 		var methodCall = this.templates.get( "methodCall" );
 		var xml = methodCall.applyTemplate( { methodName: this.method } );
 
@@ -175,7 +175,7 @@ Ext.extend( Atomic.util.XMLRPC, Ext.util.Observable, {
 						fault.xml = xml;
 						this.fireEvent( "fault", xhr, fault );
 					} else {
-						this.fireEvent( "success", xhr, xml ); 
+						this.fireEvent( "success", xhr, xml );
 					}
 				} else {
 					var fault = new Atomic.util.XMLRPCFault( xhr.status, xhr.statusText );

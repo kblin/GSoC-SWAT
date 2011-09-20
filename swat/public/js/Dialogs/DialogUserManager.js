@@ -2,18 +2,18 @@ DialogUserManager = {};
 
 DialogUserManager = {
 		show:function(data,activeTab){
-			
+
 			if(data==null)return;
-			
+
 			if(activeTab==null)activeTab=0;
-			
+
 		var oldgrouplist = '';
-		
+
 		var fullname = new Ext.form.TextField({
 			xtype: "textfield"
 			,labelAlign: 'left'
 			,id: "idfullname"
-			,value:data.fullname 
+			,value:data.fullname
 			,name: "fullname"
 			,fieldLabel: "<b>FullName</b>"
 			,width: '95%'
@@ -23,12 +23,12 @@ DialogUserManager = {
 			xtype: "textfield"
 			,labelAlign: 'left'
 			,id: "iddescription"
-			,value:data.description 
+			,value:data.description
 			,name: "description"
 			,fieldLabel: "<b>Description</b>"
 			,width: '95%'
 		});
-			
+
 		var ForcePasswordChange = new Ext.form.Checkbox({
 			xtype:'checkbox'
 			,fieldLabel: ''
@@ -44,8 +44,8 @@ DialogUserManager = {
 			,name: 'CannotChangePassword'
 			,checked : data.cannotchangepassword
 		});*/
-		
-		
+
+
 
 		var passwordexpires = new Ext.form.Checkbox({
 			xtype:'checkbox'
@@ -55,7 +55,7 @@ DialogUserManager = {
 			,checked : data.passwordexpires
 			//,height: 30
 		});
-		
+
 		var disable = new Ext.form.Checkbox({
 			xtype:'checkbox'
 			,fieldLabel: ''
@@ -64,7 +64,7 @@ DialogUserManager = {
 			,checked : data.disable
 			//,height: 30
 		});
-		
+
 		var locked = new Ext.form.Checkbox({
 			xtype:'checkbox'
 			,fieldLabel: ''
@@ -73,9 +73,9 @@ DialogUserManager = {
 			,checked : data.locked
 			//,height: 30
 		});
-		
-	
-	
+
+
+
 		var FormGeneral = new Ext.Panel({
 			labelWidth: 75
 			,labelAlign: 'left'
@@ -101,12 +101,12 @@ DialogUserManager = {
 								,locked
 							]
 				}]
-			
+
 			});
-		
-		
-		
-		 	
+
+
+
+		 
         var FormMenberof = new Ext.form.FormPanel({
 			//monitorValid: true,
 			//standardSubmit: true,
@@ -143,13 +143,13 @@ DialogUserManager = {
 			        //html: '<select name="GroupList[]" id="GroupList" multiple="true" style="width: 80%; height: 95%;"></select>'
 			    }, listeners: {
 			        'render': function () {
-                        
+
                         //console.dir(data.grouplist);
                         for (j in data.grouplist) {
 							if(typeof(data.grouplist[j])=='object'){
 								appendOptionLast('GroupList', data.grouplist[j].rid,data.grouplist[j].name,1);
-								
-							}    
+
+							}
                         }
                         oldgrouplist=ExplodeListByComma('GroupList');
 			        }
@@ -174,85 +174,85 @@ DialogUserManager = {
 			        var valor = '';
 			        var texto = '';
 			        var valor = idcomboGroups.getValue();
-			        
-			
-					
-                            					
+
+
+
+                            
 			        if (valor.trim != '') {
 						var record = idcomboGroups.findRecord(idcomboGroups.valueField, valor);
 						if(record){
-							var texto = record.get(idcomboGroups.displayField);					        
+							var texto = record.get(idcomboGroups.displayField);
 							if(texto.trim != ''){
 								appendOptionLast('GroupList', valor, texto, 1);
 							}
 						}
 			        }
-			        
-	        
+
+
 
 			    },style: 'float:right;padding-right: 5px;padding-top:2px;'
 
 			}],
-        });	
-        
+        });
 
-						
+
+
 		var profile = new Ext.form.TextField({
 			xtype: "textfield"
 			,labelAlign: 'left'
 			,id: "idprofile"
-			,value:data.profile 
+			,value:data.profile
 			,name: "profile"
 			,fieldLabel: "<b>Path profile</b>"
 			,width: '95%'
-		});        
-        
+		});
+
 		var logonscript = new Ext.form.TextField({
 			xtype: "textfield"
 			,labelAlign: 'left'
 			,id: "idlogonscript"
-			,value:data.logonscript 
+			,value:data.logonscript
 			,name: "logonscript"
 			,fieldLabel: "<b>Logon script</b>"
 			,width: '95%'
-		});  
-		
-		
+		});
+
+
 		var homedir = new Ext.form.TextField({
 			xtype: "textfield"
 			,labelAlign: 'left'
 			,id: "idhomedir"
-			,value:data.homedir 
+			,value:data.homedir
 			,name: "homedir"
 			,fieldLabel: "<b>Local path</b>"
 			,width: '72%'
-		});  
-		
-		
+		});
+
+
 		var driveArray = new Array();
 		for(i = 3; i <= 26; i++){
 			driveArray.push(new Array(i,String.fromCharCode(64+i)+':'));
 		}
 
-		var driveStore = new Ext.data.SimpleStore({  
-            		id      : 0 ,  
-            		fields  : [  'id', 'name' ],  
+		var driveStore = new Ext.data.SimpleStore({
+            		id      : 0 ,
+            		fields  : [  'id', 'name' ],
            		 data    : driveArray
         	});
-        	
+        
 		var radio1 = false;
 		var radio2 = false;
-		
 
-		
+
+
 		var maphomedirdrive = new Ext.form.TextField({
 			xtype: "textfield"
 			,labelAlign: 'left'
-			,value:data.homedir 
+			,value:data.homedir
 			,name: "homedir"
 			,width: '54%'
-		});  	
-	
+		});  
+
 		var drive =  data.maphomedirdrive.toString().charAt(0);
 
 		var drivecombo = new Ext.form.ComboBox({
@@ -263,26 +263,26 @@ DialogUserManager = {
 						,mode: 'local'
 						//,disabled:true
 						//,forceSelection:true
-						,listeners   : {  
-									beforerender: function(combo){  
+						,listeners   : {
+									beforerender: function(combo){
 										if(drive.isAlpha()){
-											drivecombo.setValue(data.maphomedirdrive);  
+											drivecombo.setValue(data.maphomedirdrive);
 										}
-									} 
+									}
 						}
-		});  		
-	
-		
+		});  
+
+
 		if(drive.isAlpha()){
 			radio2 = true;
 			homedir.disable();
 		} else {
 			radio1 = true;
 			drivecombo.disable();
-			maphomedirdrive.disable();			
-		}		
+			maphomedirdrive.disable();
+		}
 
-		
+
         var FormUserProfile = new Ext.Panel({
 			//monitorValid: true,
 			//standardSubmit: true,
@@ -304,16 +304,16 @@ DialogUserManager = {
 							xtype: 'fieldset'
 							,title: 'Home Folder'
 							//,layout:'table'
-							//,layoutConfig: {columns:2}							
+							//,layoutConfig: {columns:2}
 							//,labelAlign: 'top'
 							//collapsible: true
 							,items: [
-										{  
-												xtype           : "compositefield", //step 2  
-												//fieldLabel  : "Phone",  
+										{
+												xtype           : "compositefield", //step 2
+												//fieldLabel  : "Phone",
 												hideLabel:true,
-												border        : false,  
-												items           : [ 
+												border        : false,
+												items           : [
 													{
 														xtype : "radio"
 														,name : "radio1"
@@ -328,15 +328,15 @@ DialogUserManager = {
 														}
 													}
 													,homedir
-													
-												]  
+
+												]
 										}
-										,{  
-												xtype           : "compositefield", //step 2  
+										,{
+												xtype           : "compositefield", //step 2
 												hideLabel:true,
-												border: false,  
-												items: [ 
-													{	
+												border: false,
+												items: [
+													{
 														xtype : "radio"
 														,name : "radio1"
 														,boxLabel:'Connect'
@@ -349,14 +349,14 @@ DialogUserManager = {
 																drivecombo.disable();
 																maphomedirdrive.disable();
 															}
-														}														
+														}
 													}
 													,drivecombo
 													,{xtype : "displayfield", value:" To: "}
-													,maphomedirdrive 
-													
-												]  
-										}																		
+													,maphomedirdrive
+
+												]
+										}
 								/*{
 									xtype: 'radio'
 									,name:'select'
@@ -364,8 +364,8 @@ DialogUserManager = {
 									,handler: function () {
 										removeOptionSelected('GroupList', 1);
 									}
-								}	
-								,homedir							
+								}
+								,homedir
 								,{
 									xtype: 'radio'
 									,boxLabel: 'Delete'
@@ -378,10 +378,10 @@ DialogUserManager = {
 							]
 						}
 					],
-        });	        
-        
-        
-            		
+        });
+
+
+            
 			var tabs = new Ext.TabPanel({
 			activeTab: activeTab,
 			items: [
@@ -398,9 +398,9 @@ DialogUserManager = {
 						//,html: 'Another one'
 					}
 				]
-			});			
+			});
 
-			
+
 			var WindowUserManager = new Ext.Window({
 			title: sprintf('%s properties',data.username.capitalize())
 			,modal:true
@@ -416,23 +416,23 @@ DialogUserManager = {
 							text: 'Guardar',
 							//formBind: true,
 							handler:function(){
-								
-								
-								
+
+
+
 								if(drivecombo.getValue().trim()!=''){
 									homedir = maphomedirdrive.getValue();
 								} else {
 									homedir = homedir.getValue();
 								}
-								
+
                             //var optionList = new Array();
 
-                            
-                            
+
+
                             //var sendJson = Ext.util.JSON.encode(optionList);
-                            //console.log(grouplist);	
-                            
-                            	grouplist=ExplodeListByComma('GroupList');															
+                            //console.log(grouplist);
+
+                            	grouplist=ExplodeListByComma('GroupList');
 								params={
 										description:description.getValue()
 										,changepassword:ForcePasswordChange.getValue()
@@ -450,9 +450,9 @@ DialogUserManager = {
 										,rid:data.rid
 										,username:data.username
 								}
-								
+
 								//var form = new Ext.form.FormPanel({id:'idSendForm',url:''});
-								 	
+								 
 								//SendForm(form,WindowUserManager,'User/UpdateUser',params)
 								UserController.SendData('User/UpdateUser',params,WindowUserManager);
 							}
@@ -462,15 +462,15 @@ DialogUserManager = {
 								WindowUserManager.close();
 							}
 						}
-			]			
+			]
 			});
 
 
 			//top.render(WindowUserManager);
-			
-			WindowUserManager.show();			
+
+			WindowUserManager.show();
 			WindowUserManager.center();
-		
+
 		}
 }
 

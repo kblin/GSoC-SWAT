@@ -1,7 +1,7 @@
 
 Ext.onReady( function()
 {
-    var xmlrpc = new Atomic.util.XMLRPC( { 
+    var xmlrpc = new Atomic.util.XMLRPC( {
         url: "xmlrpc.php",
         method: "blogger.getUsersBlogs"
     } );
@@ -19,7 +19,7 @@ Ext.onReady( function()
         Ext.MessageBox.alert( "XML-RPC fault #" + fault.code, fault.message );
     } );
     // make the call
-    xmlrpc.call( { 
+    xmlrpc.call( {
         method: "blogger.getUsersBlogs",
         params: [
              "0123456789ABCDEF",
@@ -28,7 +28,7 @@ Ext.onReady( function()
         ]
     } );
 }
- 
+
 
 
 

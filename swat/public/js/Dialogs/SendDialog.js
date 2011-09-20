@@ -1,14 +1,14 @@
 
 function SendForm(Form,MainWindow,url,params){
-	
-	if(typeof(Form) == 'undefined') return false;  
+
+	if(typeof(Form) == 'undefined') return false;
 	if(typeof(MainWindow) == 'undefined') return false;
 	if(typeof(url) == 'undefined') return false;
 	if(typeof(params) == 'undefined') return false;
 	if(typeof(params.account) == 'undefined') return false;
-	
-	
-	
+
+
+
     Form.getForm().submit({
         url: url,
         params: params
@@ -20,7 +20,7 @@ function SendForm(Form,MainWindow,url,params){
 
             MainWindow.close();
             Ext.getCmp('GridObjectBrowser').store.load();
-            
+
         }, failure: function (form, action) {
 
             switch (action.failureType) {
@@ -34,10 +34,10 @@ function SendForm(Form,MainWindow,url,params){
 					Ext.Msg.alert('Error', action.result.msg,MainWindow.close());
                 break;
 				default:
-					Ext.Msg.alert('Error', action.result.msg,MainWindow.close());                                        
-				
+					Ext.Msg.alert('Error', action.result.msg,MainWindow.close());
+
                 }
 
         }
-    });	
-}                            
+    });
+}

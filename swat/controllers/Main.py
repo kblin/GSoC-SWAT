@@ -9,13 +9,13 @@ log = logging.getLogger(__name__)
 
 class MainController(BaseController):
 
-	def	index(self):
-		response.headers['Content-type'] = 'text/html; charset=utf-8'
-		c.title = "Samba Web Administration Tool"
-		c.auth = False
-		if self._check_session():
-			c.auth = True
-			c.DnsDomain = session['DnsDomain'];
-			c.RootDSE = session['RootDSE'];
-			c.SambaVersion = session['SambaVersion'];
-		return render('/index.html')
+    def index(self):
+        response.headers['Content-type'] = 'text/html; charset=utf-8'
+        c.title = "Samba Web Administration Tool"
+        c.auth = False
+        if self._check_session():
+            c.auth = True
+            c.DnsDomain = session['DnsDomain'];
+            c.RootDSE = session['RootDSE'];
+            c.SambaVersion = session['SambaVersion'];
+        return render('/index.html')

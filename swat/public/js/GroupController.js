@@ -1,7 +1,7 @@
 Ext.ns("GroupController");
 
 GroupController = {
- 
+
 			NewGroup:function(){
 				DialogNewGroup.show();
 			}
@@ -16,8 +16,8 @@ GroupController = {
 				if(data==null) return;
 				DialogNewGroup.show(data);
 			}
-	
-			
+
+
 			,DeleteGroup:function(rid,group){
 				ParamsObj = {
 					rid:rid
@@ -31,7 +31,7 @@ GroupController = {
 				var RemoveList = Array();
 
 				Ext.each(seleccionados, function (record) {
-					RemoveList.push(record.data['rid']);	
+					RemoveList.push(record.data['rid']);
 				});
 
 				ParamsObj = {
@@ -43,33 +43,33 @@ GroupController = {
 				}
 			}
 
-            
-            
+
+
             ,Manage:function(group,data){
 				DialogGroupManager.show(data);
             }
-            
-            
+
+
             ,SendData:function(url,params,MainWindow){
-            
+
 					Ext.Ajax.request({
 										url: url,
-										method : 'POST', 
+										method : 'POST',
 										success: function(response, opts) {
 
 												var Return = Ext.decode(response.responseText);
-												
+
 												if(!Return.success){
 													Ext.Msg.alert('<b>Error</b>',Return.msg);
 													return false;
-												} 
-												
+												}
+
 												Ext.getCmp('GridObjectBrowser').store.load();
-												
+
 												if(typeof(MainWindow) != 'undefined') {
 													MainWindow.close();
-												}	
-										
+												}
+
 
 										},
 
@@ -78,10 +78,10 @@ GroupController = {
 												Ext.Msg.alert('<b>Error</b>',ErrorMsg);
 										},
 										params: params
-					});            
-            
+					});
+
             }
-            
+
 }
 
 /*
@@ -97,9 +97,9 @@ GroupController = {
         :param mailaddress: Email address of the new group
         :param notes: Notes of the new group
         :param sd: security descriptor of the object
-        
+
         def deletegroup(self, groupname):
-        
+
     def add_remove_group_members(self, groupname, listofmembers,
                                   add_members_operation=True):
         """Adds or removes group members
@@ -108,5 +108,5 @@ GroupController = {
         :param listofmembers: Comma-separated list of group members
         :param add_members_operation: Defines if its an add or remove
             operation
-        """        
+        """
 */

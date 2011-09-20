@@ -8,11 +8,11 @@ Ext.ns('Ext.ux.grid');
 
 /**
  * @class Ext.ux.grid.RowEditor
- * @extends Ext.Panel 
+ * @extends Ext.Panel
  * Plugin (ptype = 'roweditor') that adds the ability to rapidly edit full rows in a grid.
  * A validation mode may be enabled which uses AnchorTips to notify the user of all
  * validation errors at once.
- * 
+ *
  * @ptype roweditor
  */
 Ext.ux.grid.RowEditor = Ext.extend(Ext.Panel, {
@@ -194,7 +194,7 @@ Ext.ux.grid.RowEditor = Ext.extend(Ext.Panel, {
                 }
             }
         }
-        
+
         if(this.hasChange && this.fireEvent('validateedit', this, changes, r, this.rowIndex) !== false){
             r.beginEdit();
             for(var k in changes){
@@ -208,7 +208,7 @@ Ext.ux.grid.RowEditor = Ext.extend(Ext.Panel, {
         }else {
             this.fireEvent('canceledit', this, false);
         }
-        
+
         this.hide();
     },
 

@@ -25,10 +25,10 @@ String.prototype.trim = function () {
 
 }
 
-String.prototype.isAlpha =  function(){  
-    var regEx = /^[a-zA-Z]+$/;  
-    return this.match(regEx);  
-}  
+String.prototype.isAlpha =  function(){
+    var regEx = /^[a-zA-Z]+$/;
+    return this.match(regEx);
+}
 
 function ord (string) {
     // http://kevin.vanzonneveld.net
@@ -70,8 +70,8 @@ function ExplodeListByComma(idlist){
         }
     }
     return grouplist;
-}   
-                   
+}
+
  function getJsonOfStore(store){
         var datar = new Array();
         var jsonDataEncode = "";
@@ -122,9 +122,9 @@ function appendOptionLast(idselect, value, text,type) {
 			}
 
 			css='';
-			
+
 			if (errores == 0) {
-				
+
 				switch(type){
 					case lsa_SidType.SID_NAME_USER:
 						css='Listbox-user-icon';
@@ -156,7 +156,7 @@ function appendOptionLast(idselect, value, text,type) {
 					default:
 						css='Listbox-group-icon';
 				}
-	
+
 
 				try {
 

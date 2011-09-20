@@ -2,10 +2,10 @@ DialogResetPass = {};
 
 DialogResetPass = {
 		show:function(account,data){
-			
+
 			if(account==null)return;
 			if(data==null)return;
-			
+
 		   var FormResetPass = new Ext.FormPanel({
 				labelWidth: 75
 				,labelAlign: 'left'
@@ -50,23 +50,23 @@ DialogResetPass = {
 												},{
 													xtype: 'box'
 													,id:'AccountStatusLabel'
-													
+
 													,autoEl: {
 														//tag: 'blockquote'
 														html: '<span style="font-size: small">&nbsp;&nbsp;&nbsp;El usuario ha de cerrar la sessi&oacute;n y volver a abrirla para que los cambios<br>&nbsp;&nbsp; tengan efecto.<br><br></span>'
-													}												
+													}
 												},{
 													xtype: 'box'
 													,autoEl: {
 														tag: 'blockquote'
 														,html: '<span style="font-size: small">Estado del bloqueo de cuenta en este controlador de dominio:</span>'
-													}												
+													}
 												},{
 													xtype:'checkbox'
 													,fieldLabel: ''
 													,boxLabel: 'Desbloquear la cuenta de usuario'
-													,name: 'UnlockUserAccount'									
-												}]									
+													,name: 'UnlockUserAccount'
+												}]
 									}]
 					}]
                     ,buttons: [{
@@ -84,18 +84,18 @@ DialogResetPass = {
 
 							if (strength <= 60){
 								Ext.Msg.alert('Error','La Contrase&ntilde;a es demasiado d&eacute;bil');
-								return;								
+								return;
 							}
-							
+
 							params={
 								account:account
 								,password:pass1
 								,rid:data.rid
-							}	
-							
-							
+							}
+
+
 							SendForm(FormResetPass,WindowResetPass,'User/SetPassword',params)
-						
+
                         }
                     }, {
 
@@ -110,7 +110,7 @@ DialogResetPass = {
                     }]
 			});
 
-			
+
 
 			var WindowResetPass = new Ext.Window({
                     title: 'Restablecer contrase&ntilde;a'
@@ -124,9 +124,9 @@ DialogResetPass = {
 
 
 			//top.render(WindowResetPass);
-			
-			WindowResetPass.show();			
+
+			WindowResetPass.show();
 			WindowResetPass.center();
-		
+
 		}
 }

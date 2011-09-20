@@ -4,11 +4,11 @@ AppContexMenu={
 	,BuiltinContexMenu : null
 	,OUContexMenu : null
 	,ContainerContexMenu : null
-	,show : false	
+	,show : false
 	,data : null
-	
+
 	,init:function(){
-	
+
             this.UserContexMenu = new Ext.menu.Menu({
 
                 id: 'UserContexMenu'
@@ -77,18 +77,18 @@ AppContexMenu={
 								//,iconCls: 'edit_user'
 
 							}
-						]	
+						]
 
-            });   
-            
-            
-            
+            });
+
+
+
             this.ShareContexMenu = new Ext.menu.Menu({
 
                 id: 'ShareContexMenu',
 
                 items: [
-                
+
 							{
 								text: 'Copy ..'
 								,handler: this.OnContexMenuDelegateControlClick
@@ -127,11 +127,11 @@ AppContexMenu={
 								//,iconCls: 'edit_user'
 
 							}
-						]	
+						]
 
-            });  
-            
-            
+            });
+
+
             this.GroupContexMenu = new Ext.menu.Menu({
 
                 id: 'GroupContexMenu',
@@ -169,10 +169,10 @@ AppContexMenu={
 								//,iconCls: 'edit_user'
 
 							}
-						]	
+						]
 
-            }); 
-	
+            });
+
 	}
 
 	,OnGroupContexMenuCopyClick : function(item,event){
@@ -184,7 +184,7 @@ AppContexMenu={
 		var data = AppContexMenu.data.json;
 		UserController.CopyUser(data);
 	}
-	
+
 	,OnContexMenuCutClick : function(item,event){
 		alert('Unimplemented');
 	 console.dir(item);
@@ -225,17 +225,17 @@ AppContexMenu={
 	}
 
 	,OnGroupContexMenuRenameClick : function(item,event){
-		
+
 		GroupController.RenameGroup(AppContexMenu.rowIndex);
 
 	}
 
 	,OnContexMenuRenameClick : function(item,event){
 
-		
+
 
 	}
-	
+
 	,OnContexMenuSearchClick : function(item,event){
 		alert('Unimplemented');
 	 console.dir(item);
@@ -261,17 +261,17 @@ AppContexMenu={
 		} else {
 			UserController.EnableAccount(rid,account,false);
 		}
-		
+
 	}
 
 
 	,OnUserContexMenuResetPassClick : function(item,event){
-		
+
 		var data = AppContexMenu.data.json;
 		var account = data.username;
-		
+
 		UserController.SetPassword(account,data);
-		
+
 	}
 
 
@@ -299,7 +299,7 @@ AppContexMenu={
 	,OnGroupContexMenuPropertyClick : function(item,event){
 		var data = AppContexMenu.data.json;
 		var group = data.name;
-		GroupController.Manage(group,data);		
+		GroupController.Manage(group,data);
 	}
 
 	,OnContexMenuAddPcClick : function(item,event){
@@ -347,8 +347,8 @@ AppContexMenu={
 		alert('Unimplemented');
 	 console.dir(item);
 	 console.dir(event);
-	}	
-	
+	}
+
 	,OnContexMenuChangeDomainClick: function(item,event){
 			alert('Unimplemented');
 		 console.dir(item);
@@ -373,5 +373,5 @@ AppContexMenu={
 			alert('Unimplemented');
 		 console.dir(item);
 		 console.dir(event);
-	}	
+	}
 };

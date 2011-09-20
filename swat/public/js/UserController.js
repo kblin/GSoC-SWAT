@@ -9,7 +9,7 @@ UserController = {
             homedirectory=None, jobtitle=None, department=None, company=None,
             description=None, mailaddress=None, internetaddress=None,
             telephonenumber=None, physicaldeliveryoffice=None, sd=None,
-            setpassword=True):    
+            setpassword=True):
         """Adds a new user with additional parameters
 
         :param username: Name of the new user
@@ -35,7 +35,7 @@ UserController = {
         :param physicaldeliveryoffice: Office location of the new user
         :param sd: security descriptor of the object
         :param setpassword: optionally disable password reset
-        """    
+        """
     */
    	    NewUser:function(){
 			DialogNewUser.show();
@@ -51,8 +51,8 @@ UserController = {
 			if(data==null) return;
 			DialogNewUser.show(data);
 	    }
-	
-			
+
+
    	    ,DeleteUser:function(rid,username){
 			ParamsObj = {
 				rid:rid
@@ -66,7 +66,7 @@ UserController = {
 			var RemoveList = Array();
 
 			Ext.each(seleccionados, function (record) {
-				RemoveList.push(record.data['username']);	
+				RemoveList.push(record.data['username']);
 			});
 
 			ParamsObj = {
@@ -79,7 +79,7 @@ UserController = {
 	    }
 
 
-    
+
             ,EnableAccount: function(rid,username,enable) {
 				enable= enable || false;
 				if(enable) enable = 'yes';
@@ -96,42 +96,42 @@ UserController = {
 						rid:rid
 						,username:username
 				}
-				UserController.SendData('User/ForcePasswordChangeAtNextLogin',ParamsObj);            
+				UserController.SendData('User/ForcePasswordChangeAtNextLogin',ParamsObj);
             }
-            
+
             ,SetPassword:function(account,data) {
                 //force_change_at_next_login= force_change_at_next_login || false;
 				DialogResetPass.show(account,data);
             }
-            
+
             ,SetExpiry:function(rid,account,expiry,days) {
               expiry = expiry || false;
             }
-            
+
             ,ManageUser:function(account,data){
 				DialogUserManager.show(data);
             }
-            
-            
+
+
             ,SendData:function(url,params,MainWindow){
-            
+
 					Ext.Ajax.request({
 										url: url,
-										method : 'POST', 
+										method : 'POST',
 										success: function(response, opts) {
 
 												var Return = Ext.decode(response.responseText);
-												
+
 												if(!Return.success){
 													Ext.Msg.alert('<b>Error</b>',Return.msg);
 													return false;
-												} 
-												
+												}
+
 												Ext.getCmp('GridObjectBrowser').store.load();
 												if(typeof(MainWindow) != 'undefined') {
 													MainWindow.close();
-												}	
-										
+												}
+
 
 										},
 
@@ -140,22 +140,22 @@ UserController = {
 												Ext.Msg.alert('<b>Error</b>',ErrorMsg);
 										},
 										params: params
-					});            
-            
+					});
+
             }
-            
-            
+
+
             ,Implement:function(){
-            
-            }            
-            
+
+            }
+
 
 }
 
 /*
 
 
-    
+
 
     def newgroup(self, groupname, groupou=None, grouptype=None,
                  description=None, mailaddress=None, notes=None, sd=None):
@@ -167,9 +167,9 @@ UserController = {
         :param mailaddress: Email address of the new group
         :param notes: Notes of the new group
         :param sd: security descriptor of the object
-        
+
         def deletegroup(self, groupname):
-        
+
     def add_remove_group_members(self, groupname, listofmembers,
                                   add_members_operation=True):
         """Adds or removes group members
@@ -178,5 +178,5 @@ UserController = {
         :param listofmembers: Comma-separated list of group members
         :param add_members_operation: Defines if its an add or remove
             operation
-        """        
+        """
 */

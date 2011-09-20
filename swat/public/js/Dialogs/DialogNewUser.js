@@ -19,7 +19,7 @@ DialogNewUser = {
 
 
 
-			
+
 		   var FormNewUser = new Ext.FormPanel({
 				labelWidth: 75
 				,labelAlign: 'left'
@@ -32,7 +32,7 @@ DialogNewUser = {
 				,items: [{
 							layout: 'form'
 							,items: [
-								{			
+								{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,id: "idUsername"
@@ -40,7 +40,7 @@ DialogNewUser = {
 									,allowBlank: false
 									,fieldLabel: "<b>Username</b>"
 									,width: '95%'
-								},{			
+								},{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,id: "idFullname"
@@ -49,7 +49,7 @@ DialogNewUser = {
 									//,allowBlank: false
 									,fieldLabel: "<b>Fullname</b>"
 									,width: '95%'
-								},{			
+								},{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,id: "idDescription"
@@ -62,8 +62,8 @@ DialogNewUser = {
 									xtype: 'box'
 									,autoEl: {
 										tag: 'hr'
-									}												
-								},{			
+									}
+								},{
 									xtype: "textfield"
 									,labelAlign: 'left'
 									,inputType: 'password'
@@ -93,12 +93,12 @@ DialogNewUser = {
 									,handler:function(checkbox,checked){
 										if(checked){
 											Ext.getCmp('IdPasswordExpires').disable();
-											Ext.getCmp('IdCannotChangePassword').disable();											
+											Ext.getCmp('IdCannotChangePassword').disable();
 										} else {
 											Ext.getCmp('IdPasswordExpires').enable();
 											Ext.getCmp('IdCannotChangePassword').enable();
 										}
-									}	
+									}
 								},{
 									xtype:'checkbox'
 									,hideLabel:true
@@ -148,7 +148,7 @@ DialogNewUser = {
 									,checked:data.disable
 									//,checked : true
 									//,height: 30
-								}			
+								}
 								]
 					}]
                     ,buttons: [{
@@ -169,19 +169,19 @@ DialogNewUser = {
 								return;
 							}
 
-							params={	
+							params={
 								account:Ext.getCmp('idUsername').getValue()
 								,password:pass1
 								,iscopy:false
 							}
-							
+
 							if(iscopy){
 								grouplist = Array();
 								for (j in data.grouplist) {
-									
+
 									if(typeof(data.grouplist[j])=='object'){
-										grouplist.push(data.grouplist[j].rid);	
-									} 
+										grouplist.push(data.grouplist[j].rid);
+									}
 								}
 
 								params.locked=data.locked;
@@ -193,10 +193,10 @@ DialogNewUser = {
 								params.iscopy=true;
 							}
 
-							
-							
+
+
 							SendForm(FormNewUser,WindowNewUser,'User/AddUser',params)
-						
+
                         }
                     }, {
 
@@ -226,9 +226,9 @@ DialogNewUser = {
 
 
 			//top.render(WindowNewUser);
-			
-			WindowNewUser.show();			
+
+			WindowNewUser.show();
 			WindowNewUser.center();
-		
+
 		}
 }
