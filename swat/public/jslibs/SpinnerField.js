@@ -18,19 +18,19 @@ Ext.ux.form.SpinnerField = Ext.extend(Ext.form.NumberField, {
     onBlur: Ext.emptyFn,
     adjustSize: Ext.BoxComponent.prototype.adjustSize,
 
-	constructor: function(config) {
-		var spinnerConfig = Ext.copyTo({}, config, 'incrementValue,alternateIncrementValue,accelerate,defaultValue,triggerClass,splitterClass');
+ constructor: function(config) {
+  var spinnerConfig = Ext.copyTo({}, config, 'incrementValue,alternateIncrementValue,accelerate,defaultValue,triggerClass,splitterClass');
 
-		var spl = this.spinner = new Ext.ux.Spinner(spinnerConfig);
+  var spl = this.spinner = new Ext.ux.Spinner(spinnerConfig);
 
-		var plugins = config.plugins
-			? (Ext.isArray(config.plugins)
-				? config.plugins.push(spl)
-				: [config.plugins, spl])
-			: spl;
+  var plugins = config.plugins
+   ? (Ext.isArray(config.plugins)
+    ? config.plugins.push(spl)
+    : [config.plugins, spl])
+   : spl;
 
-		Ext.ux.form.SpinnerField.superclass.constructor.call(this, Ext.apply(config, {plugins: plugins}));
-	},
+  Ext.ux.form.SpinnerField.superclass.constructor.call(this, Ext.apply(config, {plugins: plugins}));
+ },
 
     onShow: function(){
         if (this.wrap) {

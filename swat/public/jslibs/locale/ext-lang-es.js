@@ -107,8 +107,8 @@ if(Ext.DatePicker){
     maxText           : "Esta fecha es posterior a la fecha m&#225;xima",
     disabledDaysText  : "",
     disabledDatesText : "",
-    monthNames	      : Date.monthNames,
-    dayNames		  : Date.dayNames,
+    monthNames       : Date.monthNames,
+    dayNames    : Date.dayNames,
     nextText          : 'Mes Siguiente (Control+Right)',
     prevText          : 'Mes Anterior (Control+Left)',
     monthYearText     : 'Seleccione un mes (Control+Up/Down para desplazar el a&#241;o)',
@@ -192,7 +192,7 @@ if(Ext.form.HtmlEditor){
     buttonTips : {
       bold : {
         title: 'Negritas (Ctrl+B)',
-	    text: 'Transforma el texto seleccionado en Negritas.',
+     text: 'Transforma el texto seleccionado en Negritas.',
         cls: 'x-html-editor-tip'
       },
       italic : {

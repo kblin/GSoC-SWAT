@@ -9,7 +9,7 @@ function loadjscssfile(filename){
 Array.prototype.find = function(searchStr) {
   for (i=0; i<this.length; i++) {
       if (this[i]===searchStr) {
-		return true;
+  return true;
     }
   }
   return false;
@@ -59,13 +59,13 @@ function ord (string) {
 }
 
 function ExplodeListByComma(idlist){
-	var grouplist = "";
+ var grouplist = "";
     var elSel = document.getElementById(idlist);
     if (elSel) {
         var count = elSel.options.length - 1;
         for (i = 0; i <= count; i++) {
          //optionList.push(elSel.options[i].value);
-			grouplist+=elSel.options[i].value;
+   grouplist+=elSel.options[i].value;
             if(i<count)grouplist+=',';
         }
     }
@@ -89,132 +89,132 @@ function ExplodeListByComma(idlist){
 
 function appendOptionLast(idselect, value, text,type) {
 
-	var elOptNew = document.createElement('option');
-	var errores = 0;
-	type = type || lsa_SidType.SID_NAME_DOM_GRP;
+ var elOptNew = document.createElement('option');
+ var errores = 0;
+ type = type || lsa_SidType.SID_NAME_DOM_GRP;
 
-	if (value && text) {
-
-
-
-		if (value == -1) errores++;
-
-		elOptNew.text = text;
-
-		elOptNew.value = value;
-
-		elOptNew.id = Ext.id(elOptNew, 'select');
-
-		var elSel = document.getElementById(idselect);
-
-		if (elSel) {
+ if (value && text) {
 
 
 
-			var count = elSel.options.length - 1;
+  if (value == -1) errores++;
+
+  elOptNew.text = text;
+
+  elOptNew.value = value;
+
+  elOptNew.id = Ext.id(elOptNew, 'select');
+
+  var elSel = document.getElementById(idselect);
+
+  if (elSel) {
 
 
 
-			for (i = 0; i <= count; i++) {
-
-				if (elSel.options[i].value == value) errores++;
-
-			}
-
-			css='';
-
-			if (errores == 0) {
-
-				switch(type){
-					case lsa_SidType.SID_NAME_USER:
-						css='Listbox-user-icon';
-					break;
-					case lsa_SidType.SID_NAME_DOM_GRP:
-						css='Listbox-group-icon';
-					break;
-					case lsa_SidType.SID_NAME_DOMAIN:
-						css='Listbox-unknown-icon';
-					break;
-					case lsa_SidType.SID_NAME_ALIAS:
-						css='Listbox-unknown-icon';
-					break;
-					case lsa_SidType.SID_NAME_WKN_GRP:
-						css='Listbox-group-icon';
-					break;
-					case lsa_SidType.SID_NAME_DELETED:
-						css='Listbox-unknown-icon';
-					break;
-					case lsa_SidType.SID_NAME_INVALID:
-						css='Listbox-unknown-icon';
-					break;
-					case lsa_SidType.SID_NAME_UNKNOWN:
-						css='Listbox-unknown-icon';
-					break;
-					case lsa_SidType.SID_NAME_COMPUTER:
-						css='Listbox-pc-icon';
-					break;
-					default:
-						css='Listbox-group-icon';
-				}
-
-
-				try {
-
-					elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
-
-					Ext.get(elOptNew.id).addClass(css);
-
-				} catch (ex) {
-
-					elSel.add(elOptNew); // IE only
-
-					Ext.get(elOptNew.id).addClass('Listbox-group-icon');
-
-				}
+   var count = elSel.options.length - 1;
 
 
 
-			}
-		}
+   for (i = 0; i <= count; i++) {
 
-	}
+    if (elSel.options[i].value == value) errores++;
+
+   }
+
+   css='';
+
+   if (errores == 0) {
+
+    switch(type){
+     case lsa_SidType.SID_NAME_USER:
+      css='Listbox-user-icon';
+     break;
+     case lsa_SidType.SID_NAME_DOM_GRP:
+      css='Listbox-group-icon';
+     break;
+     case lsa_SidType.SID_NAME_DOMAIN:
+      css='Listbox-unknown-icon';
+     break;
+     case lsa_SidType.SID_NAME_ALIAS:
+      css='Listbox-unknown-icon';
+     break;
+     case lsa_SidType.SID_NAME_WKN_GRP:
+      css='Listbox-group-icon';
+     break;
+     case lsa_SidType.SID_NAME_DELETED:
+      css='Listbox-unknown-icon';
+     break;
+     case lsa_SidType.SID_NAME_INVALID:
+      css='Listbox-unknown-icon';
+     break;
+     case lsa_SidType.SID_NAME_UNKNOWN:
+      css='Listbox-unknown-icon';
+     break;
+     case lsa_SidType.SID_NAME_COMPUTER:
+      css='Listbox-pc-icon';
+     break;
+     default:
+      css='Listbox-group-icon';
+    }
+
+
+    try {
+
+     elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+
+     Ext.get(elOptNew.id).addClass(css);
+
+    } catch (ex) {
+
+     elSel.add(elOptNew); // IE only
+
+     Ext.get(elOptNew.id).addClass('Listbox-group-icon');
+
+    }
+
+
+
+   }
+  }
+
+ }
 
 }
 
 function removeOptionSelected(idselect) {
 
-	var elSel = document.getElementById(idselect);
+ var elSel = document.getElementById(idselect);
 
-	if (elSel) {
+ if (elSel) {
 
-		var i;
+  var i;
 
-		for (i = elSel.length - 1; i >= 0; i--) {
+  for (i = elSel.length - 1; i >= 0; i--) {
 
-			if (elSel.options[i].selected) {
-				elSel.remove(i);
+   if (elSel.options[i].selected) {
+    elSel.remove(i);
 
-				if (!setSelected(idselect, i + 1)) {
+    if (!setSelected(idselect, i + 1)) {
 
-					if (i != 0) {
+     if (i != 0) {
 
-						setSelected(idselect, i - 1);
+      setSelected(idselect, i - 1);
 
-					} else {
+     } else {
 
-						setSelected(idselect, 0);
+      setSelected(idselect, 0);
 
-					}
+     }
 
-				}
+    }
 
-				break;
+    break;
 
-			}
+   }
 
-		}
+  }
 
-	}
+ }
 
 }
 

@@ -2,83 +2,83 @@ Ext.ns("GroupController");
 
 GroupController = {
 
-			NewGroup:function(){
-				DialogNewGroup.show();
-			}
+   NewGroup:function(){
+    DialogNewGroup.show();
+   }
 
-			,RenameGroup:function(rowIndex){
-				MainAppW.RowEditor.startEditing(rowIndex, false);
-			}
-
-
-
-			,CopyGroup:function(data){
-				if(data==null) return;
-				DialogNewGroup.show(data);
-			}
+   ,RenameGroup:function(rowIndex){
+    MainAppW.RowEditor.startEditing(rowIndex, false);
+   }
 
 
-			,DeleteGroup:function(rid,group){
-				ParamsObj = {
-					rid:rid
-					,group:group
-				}
-				GroupController.SendData('Group/DeleteGroup',ParamsObj);
-			}
 
-			,DeleteGroupList:function(){
-				var seleccionados = Ext.getCmp('GridObjectBrowser').getSelectionModel().getSelections();
-				var RemoveList = Array();
+   ,CopyGroup:function(data){
+    if(data==null) return;
+    DialogNewGroup.show(data);
+   }
 
-				Ext.each(seleccionados, function (record) {
-					RemoveList.push(record.data['rid']);
-				});
 
-				ParamsObj = {
-					GroupList:RemoveList.toString()
-				}
+   ,DeleteGroup:function(rid,group){
+    ParamsObj = {
+     rid:rid
+     ,group:group
+    }
+    GroupController.SendData('Group/DeleteGroup',ParamsObj);
+   }
 
-				if(RemoveList.length>0){
-					GroupController.SendData('Group/DeleteGroupList',ParamsObj);
-				}
-			}
+   ,DeleteGroupList:function(){
+    var seleccionados = Ext.getCmp('GridObjectBrowser').getSelectionModel().getSelections();
+    var RemoveList = Array();
+
+    Ext.each(seleccionados, function (record) {
+     RemoveList.push(record.data['rid']);
+    });
+
+    ParamsObj = {
+     GroupList:RemoveList.toString()
+    }
+
+    if(RemoveList.length>0){
+     GroupController.SendData('Group/DeleteGroupList',ParamsObj);
+    }
+   }
 
 
 
             ,Manage:function(group,data){
-				DialogGroupManager.show(data);
+    DialogGroupManager.show(data);
             }
 
 
             ,SendData:function(url,params,MainWindow){
 
-					Ext.Ajax.request({
-										url: url,
-										method : 'POST',
-										success: function(response, opts) {
+     Ext.Ajax.request({
+          url: url,
+          method : 'POST',
+          success: function(response, opts) {
 
-												var Return = Ext.decode(response.responseText);
+            var Return = Ext.decode(response.responseText);
 
-												if(!Return.success){
-													Ext.Msg.alert('<b>Error</b>',Return.msg);
-													return false;
-												}
+            if(!Return.success){
+             Ext.Msg.alert('<b>Error</b>',Return.msg);
+             return false;
+            }
 
-												Ext.getCmp('GridObjectBrowser').store.load();
+            Ext.getCmp('GridObjectBrowser').store.load();
 
-												if(typeof(MainWindow) != 'undefined') {
-													MainWindow.close();
-												}
+            if(typeof(MainWindow) != 'undefined') {
+             MainWindow.close();
+            }
 
 
-										},
+          },
 
-										failure: function(response, opts) {
-												ErrorMsg = 'status code ' + response.status;
-												Ext.Msg.alert('<b>Error</b>',ErrorMsg);
-										},
-										params: params
-					});
+          failure: function(response, opts) {
+            ErrorMsg = 'status code ' + response.status;
+            Ext.Msg.alert('<b>Error</b>',ErrorMsg);
+          },
+          params: params
+     });
 
             }
 

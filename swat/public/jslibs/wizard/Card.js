@@ -20,35 +20,35 @@ Ext.namespace('Ext.ux.Wiz');
  */
 Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
 
-	/**
-	 * @cfg {Boolean} header "True" to create the header element. Defaults to
-	 * "false". See {@link Ext.form.FormPanel#header}
-	 */
-	header : false,
+ /**
+  * @cfg {Boolean} header "True" to create the header element. Defaults to
+  * "false". See {@link Ext.form.FormPanel#header}
+  */
+ header : false,
 
-	/**
-	 * @cfg {Strting} hideMode Hidemode of this component. Defaults to "offsets".
-	 * See {@link Ext.form.FormPanel#hideMode}
-	 */
-	hideMode : 'display',
+ /**
+  * @cfg {Strting} hideMode Hidemode of this component. Defaults to "offsets".
+  * See {@link Ext.form.FormPanel#hideMode}
+  */
+ hideMode : 'display',
 
     initComponent : function()
     {
         this.addEvents(
-        	/**
-        	 * @event beforecardhide
-        	 * If you want to add additional checks to your card which cannot be easily done
-        	 * using default validators of input-fields (or using the monitorValid-config option),
-        	 * add your specific listeners to this event.
-        	 * This event gets only fired if the activeItem of the ownerCt-component equals to
-        	 * this instance of {@see Ext.ux.Wiz.Card}. This is needed since a card layout usually
-        	 * hides it's items right after rendering them, involving the beforehide-event.
-        	 * If those checks would be attached to the normal beforehide-event, the card-layout
-        	 * would never be able to hide this component after rendering it, depending on the
-        	 * listeners return value.
-        	 *
-        	 * @param {Ext.ux.Wiz.Card} card The card that triggered the event
-        	 */
+         /**
+          * @event beforecardhide
+          * If you want to add additional checks to your card which cannot be easily done
+          * using default validators of input-fields (or using the monitorValid-config option),
+          * add your specific listeners to this event.
+          * This event gets only fired if the activeItem of the ownerCt-component equals to
+          * this instance of {@see Ext.ux.Wiz.Card}. This is needed since a card layout usually
+          * hides it's items right after rendering them, involving the beforehide-event.
+          * If those checks would be attached to the normal beforehide-event, the card-layout
+          * would never be able to hide this component after rendering it, depending on the
+          * listeners return value.
+          *
+          * @param {Ext.ux.Wiz.Card} card The card that triggered the event
+          */
             'beforecardhide'
         );
 
@@ -58,15 +58,15 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
     },
 
 // -------- helper
-	isValid : function()
-	{
+ isValid : function()
+ {
 
-		if (this.monitorValid) {
-			return this.bindHandler();
-		}
+  if (this.monitorValid) {
+   return this.bindHandler();
+  }
 
-		return true;
-	},
+  return true;
+ },
 
 // -------- overrides
     /**
@@ -78,7 +78,7 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
      */
     bindHandler : function()
     {
-		/*
+  /*
         if(!this.bound){
             return false; // stops binding
         }*/
@@ -102,23 +102,23 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
         this.fireEvent('clientvalidation', this, valid);
     },
 
-	/**
-	 * Overrides parent implementation. This is needed because in case
-	 * this method uses "monitorValid=true", the method "startMonitoring" must
-	 * not be called, until the "show"-event of this card fires.
-	 */
-	initEvents : function()
-	{
-		var old = this.monitorValid;
-		this.monitorValid = true;
+ /**
+  * Overrides parent implementation. This is needed because in case
+  * this method uses "monitorValid=true", the method "startMonitoring" must
+  * not be called, until the "show"-event of this card fires.
+  */
+ initEvents : function()
+ {
+  var old = this.monitorValid;
+  this.monitorValid = true;
         Ext.ux.Wiz.Card.superclass.initEvents.call(this);
-		this.monitorValid = old;
+  this.monitorValid = old;
 
-		this.on('beforehide',     this.bubbleBeforeHideEvent, this);
+  this.on('beforehide',     this.bubbleBeforeHideEvent, this);
 
-		this.on('beforecardhide', this.isValid,    this);
-	    this.on('show',           this.onCardShow, this);
-		this.on('hide',           this.onCardHide, this);
+  this.on('beforecardhide', this.isValid,    this);
+     this.on('show',           this.onCardShow, this);
+  this.on('hide',           this.onCardHide, this);
     },
 
 // -------- listener
@@ -141,24 +141,24 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
      * Stops monitoring the form elements in this component when the
      * 'hide'-event gets fired.
      */
-	onCardHide : function()
-	{
-		if (this.monitorValid) {
-			this.stopMonitoring();
-		}
-	},
+ onCardHide : function()
+ {
+  if (this.monitorValid) {
+   this.stopMonitoring();
+  }
+ },
 
     /**
      * Starts monitoring the form elements in this component when the
      * 'show'-event gets fired.
      */
-	onCardShow : function()
-	{
+ onCardShow : function()
+ {
 
-	    if (this.monitorValid) {
-			this.startMonitoring();
+     if (this.monitorValid) {
+   this.startMonitoring();
 
-		}
-	}
+  }
+ }
 
 });

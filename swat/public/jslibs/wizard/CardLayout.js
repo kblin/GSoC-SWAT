@@ -44,7 +44,7 @@ Ext.ux.layout.CardLayout = Ext.extend(Ext.layout.CardLayout, {
             /*
             if (this.activeItem && !this.activeItem.hidden) {
               console.log(item);
-            	return;
+             return;
             }*/
 
             this.activeItem = item;

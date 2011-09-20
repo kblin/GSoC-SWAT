@@ -95,7 +95,7 @@ Ext.ux.grid.RowEditor = Ext.extend(Ext.Panel, {
             columnresize: this.verifyLayout,
             columnmove: this.refreshFields,
             reconfigure: this.refreshFields,
-	    destroy : this.destroy,
+     destroy : this.destroy,
             bodyscroll: {
                 buffer: 250,
                 fn: this.positionButtons
@@ -203,7 +203,7 @@ Ext.ux.grid.RowEditor = Ext.extend(Ext.Panel, {
                 }
             }
             r.endEdit();
-			changes = r.data;
+   changes = r.data;
             this.fireEvent('afteredit', this, changes, r, this.rowIndex);
         }else {
             this.fireEvent('canceledit', this, false);

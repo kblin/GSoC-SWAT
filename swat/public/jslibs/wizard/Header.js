@@ -61,54 +61,54 @@ Ext.ux.Wiz.Header = Ext.extend(Ext.BoxComponent, {
     /**
      * @cfg {Object} autoEl The element markup used to render this component.
      */
-	autoEl : {
-		tag : 'div',
-		cls		 : 'ext-ux-wiz-Header',
-		children : [{
-		  	tag		 : 'div',
-		  	cls		 : 'ext-ux-wiz-Header-title'
-		}, {
-			tag  : 'div',
-			children : [{
-				tag : 'div',
-				cls : 'ext-ux-wiz-Header-step'
-			}, {
-				tag : 'div',
-				cls : 'ext-ux-wiz-Header-stepIndicator-container'
-			}]
-		}]
-	},
+ autoEl : {
+  tag : 'div',
+  cls   : 'ext-ux-wiz-Header',
+  children : [{
+     tag   : 'div',
+     cls   : 'ext-ux-wiz-Header-title'
+  }, {
+   tag  : 'div',
+   children : [{
+    tag : 'div',
+    cls : 'ext-ux-wiz-Header-step'
+   }, {
+    tag : 'div',
+    cls : 'ext-ux-wiz-Header-stepIndicator-container'
+   }]
+  }]
+ },
 
     /**
      * @param {Ext.Element}
      */
-  	titleEl : null,
+   titleEl : null,
 
     /**
      * @param {Ext.Element}
      */
     stepEl  : null,
-  
+
     /**
      * @param {Ext.Element}
      */
-  	imageContainer : null,
-  
+   imageContainer : null,
+
     /**
      * @param {Array}
-     */  
-  	indicators : null,
+     */
+   indicators : null,
 
-  	/**
-  	 * @param {Ext.Template}
-  	 */
-  	stepTemplate : null,
-  
-  	/**
-  	 * @param {Number} lastActiveStep Stores the index of the last active card that
-  	 * was shown-
-  	 */
-  	lastActiveStep : -1,
+   /**
+    * @param {Ext.Template}
+    */
+   stepTemplate : null,
+
+   /**
+    * @param {Number} lastActiveStep Stores the index of the last active card that
+    * was shown-
+    */
+   lastActiveStep : -1,
 
 // -------- helper
     /**
@@ -122,54 +122,54 @@ Ext.ux.Wiz.Header = Ext.extend(Ext.BoxComponent, {
      *
      * @private
      */
-  	updateStep : function(currentStep, title)
-  	{
-  		var html = this.stepTemplate.apply({
-  			0 : currentStep+1,
-  			1 : this.steps,
-  			2 : title
-  		});
-  
-  		this.stepEl.update(html);
-  
-  		if (this.lastActiveStep != -1) {
-  			this.indicators[this.lastActiveStep].removeClass('ext-ux-wiz-Header-stepIndicator-active');
-  		}
-  
-  		this.indicators[currentStep].addClass('ext-ux-wiz-Header-stepIndicator-active');
-  
-  		this.lastActiveStep = currentStep;
-  	},
+   updateStep : function(currentStep, title)
+   {
+    var html = this.stepTemplate.apply({
+     0 : currentStep+1,
+     1 : this.steps,
+     2 : title
+    });
+
+    this.stepEl.update(html);
+
+    if (this.lastActiveStep != -1) {
+     this.indicators[this.lastActiveStep].removeClass('ext-ux-wiz-Header-stepIndicator-active');
+    }
+
+    this.indicators[currentStep].addClass('ext-ux-wiz-Header-stepIndicator-active');
+
+    this.lastActiveStep = currentStep;
+   },
 
 
 // -------- listener
     /**
      * Overrides parent implementation to render this component properly.
      */
-	onRender : function(ct, position)
-	{
-		Ext.ux.Wiz.Header.superclass.onRender.call(this, ct, position);
+ onRender : function(ct, position)
+ {
+  Ext.ux.Wiz.Header.superclass.onRender.call(this, ct, position);
 
-		this.indicators   = [];
-		this.stepTemplate = new Ext.Template(this.stepText),
-		this.stepTemplate.compile();
+  this.indicators   = [];
+  this.stepTemplate = new Ext.Template(this.stepText),
+  this.stepTemplate.compile();
 
-	    var el = this.el.dom.firstChild;
-	    var ns = el.nextSibling;
+     var el = this.el.dom.firstChild;
+     var ns = el.nextSibling;
 
-		this.titleEl        = new Ext.Element(el);
-		this.stepEl         = new Ext.Element(ns.firstChild);
-		this.imageContainer = new Ext.Element(ns.lastChild);
+  this.titleEl        = new Ext.Element(el);
+  this.stepEl         = new Ext.Element(ns.firstChild);
+  this.imageContainer = new Ext.Element(ns.lastChild);
 
-		this.titleEl.update(this.title);
+  this.titleEl.update(this.title);
 
-		var image = null;
-		for (var i = 0, len = this.steps; i < len; i++) {
-			image = document.createElement('div');
-			image.innerHTML = "&#160;";
-			image.className = 'ext-ux-wiz-Header-stepIndicator';
-			this.indicators[i] = new Ext.Element(image);
-			this.imageContainer.appendChild(image);
-		}
-	}
+  var image = null;
+  for (var i = 0, len = this.steps; i < len; i++) {
+   image = document.createElement('div');
+   image.innerHTML = "&#160;";
+   image.className = 'ext-ux-wiz-Header-stepIndicator';
+   this.indicators[i] = new Ext.Element(image);
+   this.imageContainer.appendChild(image);
+  }
+ }
 });
