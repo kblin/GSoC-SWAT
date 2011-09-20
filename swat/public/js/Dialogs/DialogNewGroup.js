@@ -29,7 +29,7 @@ DialogNewGroup = {
     forceSelection: false,
     store: ComboStore,
     //allowBlank: false,
-    emptyText: 'ejemplo admins ...',
+    emptyText: 'e.g. My Group ...',
     triggerAction: 'all',
     mode: 'local',
     displayField: 'name',

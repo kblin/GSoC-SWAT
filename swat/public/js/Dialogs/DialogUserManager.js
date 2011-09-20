@@ -123,7 +123,7 @@ DialogUserManager = {
        forceSelection: false,
        store: MainAppW.MemberOfStore,
        allowBlank: false,
-       emptyText: 'ejemplo admins ...',
+       emptyText: 'e.g. My Group ...',
        triggerAction: 'all',
        mode: 'local',
        displayField: 'name',
@@ -413,7 +413,7 @@ DialogUserManager = {
    ,items: [tabs]
     ,buttons: [
       {
-       text: 'Guardar',
+       text: 'Save',
        //formBind: true,
        handler:function(){
 
@@ -457,7 +457,7 @@ DialogUserManager = {
         UserController.SendData('User/UpdateUser',params,WindowUserManager);
        }
       }, {
-       text: 'Cancelar',
+       text: 'Cancel',
        handler: function () {
         WindowUserManager.close();
        }

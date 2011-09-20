@@ -40,7 +40,7 @@ DialogGroupManager = {
     forceSelection: false,
     store: ComboStore,
     //allowBlank: false,
-    emptyText: 'ejemplo admins ...',
+    emptyText: 'e.g. My Group ...',
     triggerAction: 'all',
     mode: 'local',
     displayField: 'name',
@@ -172,7 +172,7 @@ DialogGroupManager = {
    ,items: [tabs]
     ,buttons: [
       {
-       text: 'Guardar',
+       text: 'Save',
        //formBind: true,
        handler:function(){
 
@@ -192,7 +192,7 @@ DialogGroupManager = {
         UserController.SendData('Group/UpdateGroup',params,WindowUserManager);
        }
       }, {
-       text: 'Cancelar',
+       text: 'Cancel',
        handler: function () {
         WindowUserManager.close();
        }

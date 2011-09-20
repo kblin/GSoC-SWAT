@@ -94,7 +94,7 @@ AppContexMenu={
         ,handler: this.OnContexMenuDelegateControlClick
        },{
 
-        text: 'Eliminar'
+        text: 'Delete'
         ,id:'IdContainerContexMenuDelete'
 
         ,handler: this.OnContexMenuDeleteClick
@@ -103,7 +103,7 @@ AppContexMenu={
 
        }, {
 
-        text: 'Cambiar nombre'
+        text: 'Rename'
         ,id:'IdContainerContexMenuChangeName'
 
         ,handler: this.OnContexMenuRenameClick
@@ -112,7 +112,7 @@ AppContexMenu={
 
        }, {
 
-        text: 'Actualizar'
+        text: 'Update'
 
         ,handler: this.OnContexMenuUpdateClick
 

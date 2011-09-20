@@ -24,7 +24,7 @@ DialogResetPass = {
           ,id: "idpass1"
           ,name: "pass1"
           ,allowBlank: false
-          ,fieldLabel: "<b>Contrase&ntilde;a</b>"
+          ,fieldLabel: "<b>Password</b>"
           ,width: '95%'
          },{
           xtype: "PasswordMeter"
@@ -32,7 +32,7 @@ DialogResetPass = {
           ,id: "idpass2"
           ,name: "pass2"
           ,inputType: 'password'
-          ,fieldLabel: "<b>Contrase&ntilde;a</b>"
+          ,fieldLabel: "<b>Password</b>"
           ,allowBlank: false
           ,width: '95%'
          },{
@@ -43,7 +43,7 @@ DialogResetPass = {
           ,items: [{
              xtype:'checkbox'
              ,fieldLabel: ''
-             ,boxLabel: 'El usuario debe de cambiar la contrase&ntilde;a en el siguiente inicio de sessi&oacute;n'
+             ,boxLabel: 'User must change password on next login.'
              ,name: 'ForcePasswordChange'
              ,checked : data.changepassword
              //,height: 30
@@ -53,24 +53,24 @@ DialogResetPass = {
 
              ,autoEl: {
               //tag: 'blockquote'
-              html: '<span style="font-size: small">&nbsp;&nbsp;&nbsp;El usuario ha de cerrar la sessi&oacute;n y volver a abrirla para que los cambios<br>&nbsp;&nbsp; tengan efecto.<br><br></span>'
+              html: '<span style="font-size: small">&nbsp;&nbsp;&nbsp;The user has to log off and back in for the changes to take effect.<br><br></span>'
              }
             },{
              xtype: 'box'
              ,autoEl: {
               tag: 'blockquote'
-              ,html: '<span style="font-size: small">Estado del bloqueo de cuenta en este controlador de dominio:</span>'
+              ,html: '<span style="font-size: small">Account lockout status in this domain controller:</span>'
              }
             },{
              xtype:'checkbox'
              ,fieldLabel: ''
-             ,boxLabel: 'Desbloquear la cuenta de usuario'
+             ,boxLabel: 'Unlock user account'
              ,name: 'UnlockUserAccount'
             }]
          }]
      }]
                     ,buttons: [{
-                        text: 'Guardar',
+                        text: 'Save',
                         formBind: true,
                         handler:function(){
        var pass1 =  Ext.getCmp('idpass1').getValue();
@@ -78,12 +78,12 @@ DialogResetPass = {
        var strength = Ext.getCmp('idpass2').getStrength();
 
        if (pass1 != pass2){
-        Ext.Msg.alert('Error','Las Contrase&ntilde;as no son iguales');
+        Ext.Msg.alert('Error','Password mismatch.');
         return;
        }
 
        if (strength <= 60){
-        Ext.Msg.alert('Error','La Contrase&ntilde;a es demasiado d&eacute;bil');
+        Ext.Msg.alert('Error','Password too weak.');
         return;
        }
 
@@ -99,7 +99,7 @@ DialogResetPass = {
                         }
                     }, {
 
-                        text: 'Cancelar',
+                        text: 'Cancel',
 
                         handler: function () {
 
@@ -113,7 +113,7 @@ DialogResetPass = {
 
 
    var WindowResetPass = new Ext.Window({
-                    title: 'Restablecer contrase&ntilde;a'
+                    title: 'Reset Password'
                     ,modal:true
                     ,labelWidth: 75
                     ,frame: true
